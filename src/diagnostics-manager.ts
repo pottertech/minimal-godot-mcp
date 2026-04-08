@@ -90,7 +90,7 @@ export class DiagnosticsManager {
       content = await readFile(normalizedPath, 'utf-8');
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Unknown error';
-      throw new Error(`Cannot read file ${filePath}: ${msg}`);
+      throw new Error(`Cannot read file ${filePath}: ${msg}`, { cause: err });
     }
 
     await this.lspClient.openFile(normalizedPath, content);
